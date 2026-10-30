@@ -1,340 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIP Community Access</title>
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(22, 30, 46, 0.75);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --primary-accent: #0088cc;
-            --gold-accent: linear-gradient(135deg, #ffd700, #ffa500);
-            --btn-glow: rgba(0, 136, 204, 0.4);
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="Learn about our online community, participation guidelines and privacy information.">
+<title>Community Connect</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --card: #131e30;
+  --inner: #0e192a;
+  --border: #293950;
+  --text: #f8fafc;
+  --muted: #bdc9da;
+  --blue: #1688c9;
+}
 
-        body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 136, 204, 0.15) 0%, transparent 60%),
-                radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 16px;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        .container {
-            width: 100%;
-            max-width: 410px;
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            padding: 24px 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            text-align: center;
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16px;
+}
 
-        /* Top VIP Tag */
-        .vip-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            color: #ffd700;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 20px 14px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-        .profile-section {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 16px;
-        }
+main {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
 
-        .profile-img-wrapper {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto;
-            border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(135deg, #0088cc, #ffd700);
-            box-shadow: 0 8px 24px rgba(0, 136, 204, 0.3);
-        }
+.hero {
+  padding: 26px 20px 22px;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, .2);
+}
 
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            border: 2px solid #0b0f19;
-        }
+.tag {
+  display: inline-block;
+  padding: 7px 12px;
+  margin-bottom: 19px;
+  border-radius: 30px;
+  background: #1d3048;
+  color: #bae6fd;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
-        /* Online Status Indicator */
-        .online-dot {
-            position: absolute;
-            bottom: 6px;
-            right: 6px;
-            width: 16px;
-            height: 16px;
-            background-color: #22c55e;
-            border: 2.5px solid #0b0f19;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #22c55e;
-        }
+.logo {
+  display: block;
+  width: 96px;
+  height: 96px;
+  max-width: 100%;
+  margin: 0 auto 19px;
+  object-fit: cover;
+  border: 2px solid #38bdf8;
+  border-radius: 50%;
+}
 
-        .headline {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-main);
-            line-height: 1.4;
-            padding: 0 10px;
-            margin-bottom: 20px;
-            letter-spacing: -0.2px;
-        }
+h1 {
+  margin-bottom: 11px;
+  font-size: clamp(23px, 6vw, 28px);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
 
-        .headline span {
-            color: #38bdf8;
-            font-weight: 700;
-        }
+.intro {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
 
-        .btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            min-height: 54px;
-            padding: 14px 20px;
-            background: linear-gradient(135deg, #0088cc, #006699);
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 14px;
-            margin: 12px 0;
-            box-shadow: 0 8px 20px var(--btn-glow);
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-        }
+.join {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 12px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
 
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                60deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transform: rotate(30deg);
-            animation: shine 3s infinite;
-        }
+.join:hover {
+  background: #0875b4;
+}
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            20% { transform: translateX(100%) rotate(30deg); }
-            100% { transform: translateX(100%) rotate(30deg); }
-        }
+.join:focus-visible,
+footer a:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 4px;
+}
 
-        .btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 4px 12px var(--btn-glow);
-        }
+.small-note {
+  margin-top: 14px;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.6;
+}
 
-        .btn svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-            flex-shrink: 0;
-        }
+.section {
+  margin-top: 14px;
+  padding: 18px 17px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  scroll-margin-top: 15px;
+}
 
-        .info-card {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 16px;
-            padding: 18px;
-            margin: 16px 0;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: left;
-        }
+.section h2 {
+  margin-bottom: 10px;
+  font-size: 17px;
+  line-height: 1.4;
+}
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            color: #cbd5e1;
-            margin-bottom: 12px;
-            line-height: 1.3;
-            font-weight: 500;
-        }
+.section p,
+.section li {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
 
-        .info-item:last-child {
-            margin-bottom: 0;
-        }
+.section p + p {
+  margin-top: 9px;
+}
 
-        .info-item .icon-box {
-            width: 28px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            font-size: 15px;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+.section ul {
+  padding-left: 19px;
+}
 
-        /* Red Highlight Box for Callout */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(225, 29, 72, 0.15), rgba(159, 18, 57, 0.25));
-            border: 1px solid rgba(225, 29, 72, 0.4);
-            border-radius: 16px;
-            padding: 16px;
-            margin: 16px 0;
-            text-align: left;
-        }
+.section li + li {
+  margin-top: 6px;
+}
 
-        .highlight-box .info-item {
-            color: #fecdd3;
-        }
+footer {
+  padding: 22px 8px 8px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.9;
+}
 
-        .disclaimer-section {
-            margin-top: 22px;
-            font-size: 11px;
-            color: var(--text-sub);
-            line-height: 1.5;
-            text-align: center;
-            padding: 0 6px;
-        }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  margin: 10px 0;
+}
 
-        .footer-links {
-            margin-top: 10px;
-        }
+footer a {
+  color: #93dfff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
 
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            margin: 0 6px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+@media (max-width: 360px) {
+  body {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 
-        .footer-links a:hover {
-            color: #38bdf8;
-        }
+  .hero {
+    padding: 22px 15px 19px;
+  }
 
-        /* Mobile Scale Adjustments */
-        @media (max-width: 360px) {
-            .container {
-                padding: 20px 16px;
-            }
-            .profile-img-wrapper {
-                width: 100px;
-                height: 100px;
-            }
-            .headline {
-                font-size: 15px;
-            }
-            .btn {
-                font-size: 15px;
-            }
-        }
-    </style>
+  .section {
+    padding: 16px 14px;
+  }
+
+  .logo {
+    width: 84px;
+    height: 84px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .join {
+    transition: none;
+  }
+}
+</style>
 </head>
+
 <body>
+<main>
 
-    <div class="container">
-        <!-- Top VIP Badge -->
-        <div class="vip-badge">
-            ✨ Verified Community
-        </div>
+  <header class="hero">
+    <div class="tag">ONLINE COMMUNITY</div>
 
-        <!-- Profile Section -->
-        <div class="profile-section">
-            <div class="profile-img-wrapper">
-                <img src="https://iili.io/nSu6cJe.md.jpg" alt="Profile Logo" class="profile-img">
-                <div class="online-dot"></div>
-            </div>
-        </div>
+    <img
+      class="logo"
+      src="https://iili.io/nSu6cJe.md.jpg"
+      alt="Community logo"
+      width="96"
+      height="96"
+    >
 
-        <!-- Headline -->
-        <p class="headline">"Enjoy meeting professional women. Message me on <span>Telegram</span>."</p>
+    <h1>Connect &amp; Chat With Our Community</h1>
 
-        <!-- Primary CTA Button -->
-        <a href="https://t.me/+APhF4rLvga4wM2Rl" class="btn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-            </svg>
-            Join Telegram channel
-        </a>
+    <p class="intro">
+      Explore our online community and review the available
+      information and guidelines before participating.
+    </p>
 
-        <!-- Highlight Feature Card (Matching Reference Color Scheme) -->
-        <div class="highlight-box">
-            <div class="info-item">
-                <div class="icon-box">🔥</div> Premium Social Meetup Community
-            </div>
-            <div class="info-item">
-                <div class="icon-box">👨‍💼</div> High-Profile Members
-            </div>
-            <div class="info-item">
-                <div class="icon-box">🌍</div> Available in All Major Cities
-            </div>
-            <div class="info-item">
-                <div class="icon-box">📩</div> Message Us on Telegram to Join
-            </div>
-        </div>
+    <a
+      class="join"
+      href="https://t.me/+APhF4rLvga4wM2Rl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Join Telegram</a>
 
-        <!-- Secondary CTA Button -->
-        <a href="https://t.me/+APhF4rLvga4wM2Rl" class="btn" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-            </svg>
-            Join Telegram channel
-        </a>
+    <p class="small-note">
+      Please read the community guidelines before participating.
+    </p>
+  </header>
 
-        <!-- Compliance & Policy Footer -->
-        <div class="disclaimer-section">
-            <p>This site is not a part of the Facebook website or Meta Platforms, Inc. Additionally, this site is NOT endorsed by Meta in any way. FACEBOOK is a trademark of Meta Platforms, Inc.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
-            </div>
-        </div>
-    </div>
+  <section class="section" id="about">
+    <h2>About Our Community</h2>
+    <p>
+      This page provides information about our online community
+      and links to its Telegram destination. Please review the
+      actual community details before deciding to participate.
+    </p>
+  </section>
 
+  <section class="section" id="guidelines">
+    <h2>Community Guidelines</h2>
+    <ul>
+      <li>Treat other members with respect.</li>
+      <li>Respect privacy and do not share personal information without permission.</li>
+      <li>Do not post threatening, fraudulent or unlawful content.</li>
+      <li>Follow Telegram's applicable rules and community standards.</li>
+      <li>Report inappropriate activity to the community administrator.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="privacy">
+    <h2>Privacy Policy</h2>
+    <p><strong>Website information:</strong> This page does not include a registration form or built-in analytics code.</p>
+    <p><strong>External links:</strong> Selecting Join Telegram opens a third-party service. Telegram may process technical information and account data according to its own policies.</p>
+    <p><strong>Logo:</strong> The logo is loaded from an external image host, which may receive standard technical request information.</p>
+    <p><strong>Messages and community data:</strong> Information you choose to share on Telegram is subject to Telegram's policies and the actual community's practices.</p>
+    <p><strong>Data requests:</strong> For questions about information managed by the community administrator, use the genuine contact details provided below.</p>
+    <p><strong>Changes:</strong> Any updates to this policy should be reflected on this page.</p>
+    <p><strong>Important:</strong> Review and update this policy to reflect your actual data collection, retention and sharing practices before publishing.</p>
+  </section>
+
+  <section class="section" id="terms">
+    <h2>Terms of Use</h2>
+    <p>Use this website lawfully and responsibly.</p>
+    <p>This website links to Telegram, an independent third-party platform governed by its own terms and policies.</p>
+    <p>Users must not use the community to harass, deceive, threaten or exploit others, or distribute unlawful material.</p>
+    <p>Community access and moderation are subject to the actual rules and applicable platform policies.</p>
+    <p>Nothing in these terms limits rights that cannot legally be limited under applicable law.</p>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact &amp; Support</h2>
+    <p>
+      For privacy questions, complaints or community support,
+      contact the actual community administrator through a
+      verified contact channel.
+    </p>
+    <p><strong>Administrator contact:</strong> Add your genuine support email or other appropriate contact details before publishing.</p>
+  </section>
+
+  <footer>
+    <p>Community Information</p>
+
+    <nav class="footer-links" aria-label="Policy links">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#terms">Terms of Use</a>
+      <a href="#guidelines">Community Guidelines</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <p>Telegram is an independent third-party service.</p>
+  </footer>
+
+</main>
 </body>
-  
+    
 </html>
